@@ -23,3 +23,13 @@ module.exports.signIp=function(req,res){
         title:"Codeial | Sign In"
     });
 }
+
+// get the sign up data
+module.exports.create=function(req,res){
+    // todo later
+}
+
+// get the sign in data and create session for the user
+module.exports.create=function(req,res){
+    // todo later
+}
