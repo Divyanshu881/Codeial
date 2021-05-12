@@ -2,9 +2,19 @@ const User = require('../models/user');
 
 
 module.exports.profile = function(req, res){
-    return res.render('user_profile', {
-        title: 'User Profile'
+   if(req.cookies.user_id){
+    User.findById(req.cookies.user_id, function(err,user){
+        if(user){
+            return res.render('user_profile',{
+                title: "User Profile",
+                user: user
+            })
+        }
     })
+   }
+   else{
+       return res.redirect('/users/sign-in');
+   }
 }
 
 
@@ -73,10 +83,15 @@ module.exports.createSession = function(req, res){
 
 
     });
+}
 
- 
-
-    
-
-    
+module.exports.signOut = function(req,res){
+    cookie = req.cookies;
+    for (var prop in cookie) {
+        if (!cookie.hasOwnProperty(prop)) {
+            continue;
+        }    
+        res.cookie(prop, '', {expires: new Date(0)});
+    }
+    return res.redirect('/users/sign-in');
 }
