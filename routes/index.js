@@ -7,6 +7,6 @@ console.log(`Router Loded`);
 
 router.get('/',homeController.home);
 router.use('/users',require('./users'));
-router.use('/users',require('./users'));
+//router.use('/users',require('./users'));
 
 module.exports=router;
